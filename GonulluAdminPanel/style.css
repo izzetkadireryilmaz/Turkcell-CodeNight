@@ -1,0 +1,176 @@
+/* --- GENEL SİTE STİLLERİ --- */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font */
+    margin: 0;
+    padding: 0;
+    background-color: #f5f7fa; /* Hafif Gri Site Arkaplanı */
+    color: #333; /* Genel metin rengi */
+}
+
+/* Sayfa içeriğini ortalayan ana kapsayıcı */
+.container {
+    display: flex; 
+    max-width: 1300px; /* Genişliği biraz artırdık */
+    margin: 40px auto; 
+    background-color: #fff;
+    border-radius: 12px; /* Hafif yuvarlak köşeler */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Daha belirgin gölge */
+    overflow: hidden; /* Köşelerin düzgün görünmesi için */
+}
+
+/* Sütunların genel stilleri */
+.column {
+    padding: 40px;
+    box-sizing: border-box;
+    min-height: 600px; 
+}
+
+/* Sol ve Sağ sütunların genişliği */
+.left-column {
+    flex: 1; 
+    background-color: #fcfcfc; /* Açık beyaz arka plan */
+    border-right: 1px solid #e0e0e0; 
+}
+
+.right-column {
+    flex: 1; 
+    background-color: #fcfcfc; /* Açık beyaz arka plan */
+}
+
+/* --- SOL SÜTUN: BAĞIŞ PANELİ --- */
+
+.donation-box {
+    padding: 25px;
+    border: 1px solid #b3d9ff; /* Açık mavi çerçeve */
+    border-radius: 8px; 
+    background-color: #e6f0ff; /* Hafif Mavi Panel Arkaplanı */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Başlık stili */
+.donation-box h2 {
+    color: #0056b3; /* Koyu Mavi Başlık */
+    margin-top: 0;
+    border-bottom: 3px solid #66a3ff; /* Daha kalın ve belirgin alt çizgi */
+    padding-bottom: 15px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/* Giriş grubu */
+.input-group {
+    margin-bottom: 25px;
+}
+
+.input-group label {
+    display: block; 
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Metin kutusu stili */
+#donation-amount {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+#donation-amount:focus {
+    border-color: #007bff; /* Odaklanınca mavi çerçeve */
+    outline: none;
+}
+
+/* Buton stili (Turkuaz Renk) */
+#donate-button {
+    width: 100%;
+    padding: 14px;
+    background-color: #17a2b8; /* Canlı Turkuaz */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.1s; 
+    letter-spacing: 0.5px;
+}
+
+#donate-button:hover {
+    background-color: #138496; /* Hover'da koyu turkuaz */
+    transform: translateY(-1px); /* Hafif yukarı hareket efekti */
+}
+
+.note {
+    margin-top: 20px;
+    font-size: 13px;
+    color: #888;
+    text-align: center;
+}
+
+/* --- SAĞ SÜTUN: DURUM PANELİ --- */
+
+.status-panel {
+    padding: 25px;
+    background-color: #e6f0ff; /* Hafif Mavi Panel Arkaplanı (Sol tarafla aynı) */
+    border: 1px solid #b3d9ff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.status-panel h3 {
+    color: #0056b3; /* Koyu Mavi Başlık */
+    border-bottom: 3px solid #66a3ff;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+/* Dinamik Liste stili */
+#dynamic-status-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Her bir veri satırının stili */
+.data-item {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 15px 0;
+    border-bottom: 1px dashed #cce0ff; /* Açık mavi kesik çizgi */
+    font-size: 16px;
+}
+
+.data-item:last-child {
+    border-bottom: none; 
+}
+
+.data-text {
+    font-weight: 500;
+    color: #444;
+    flex-grow: 1;
+}
+
+/* Statü Seçim Kutusu (Dropdown) Stili */
+.data-status-select {
+    padding: 8px 10px;
+    border: 1px solid #a0a0a0;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 15px;
+    min-width: 140px; 
+    transition: border-color 0.3s;
+}
+
+.data-status-select:focus {
+    border-color: #007bff;
+    outline: none;
+}
