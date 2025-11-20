@@ -3,9 +3,252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bip</title>
+    <title>Bip - Afet Yardım</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+        }
+
+        .chat-container {
+            display: flex;
+            height: 100vh;
+            max-width: 1400px;
+            margin: 0 auto;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .sidebar {
+            width: 350px;
+            background: white;
+            border-right: 1px solid #e4e6eb;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            padding: 15px;
+            background: #3b5998;
+            color: white;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .search-box {
+            padding: 10px;
+            background: #f0f2f5;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 8px;
+            border: none;
+            border-radius: 20px;
+            background: white;
+            outline: none;
+        }
+
+        .chat-list {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .chat-item {
+            display: flex;
+            padding: 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #f0f2f5;
+            transition: background 0.3s;
+        }
+
+        .chat-item:hover {
+            background: #f5f6f7;
+        }
+
+        .chat-item.active {
+            background: #e7f3ff;
+        }
+
+        .chat-item img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+
+        .chat-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-info .name {
+            font-weight: 600;
+            color: #050505;
+        }
+
+        .chat-info .last-message {
+            font-size: 13px;
+            color: #65676b;
+            margin-top: 2px;
+        }
+
+        .time {
+            font-size: 12px;
+            color: #65676b;
+        }
+
+        .chat-window {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: white;
+        }
+
+        .chat-header {
+            padding: 15px 20px;
+            background: white;
+            border-bottom: 1px solid #e4e6eb;
+        }
+
+        .chat-details .chat-name {
+            font-weight: 600;
+            font-size: 16px;
+            color: #050505;
+        }
+
+        .chat-details .chat-members {
+            font-size: 13px;
+            color: #65676b;
+        }
+
+        .messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f0f2f5;
+        }
+
+        .message {
+            display: flex;
+            margin-bottom: 15px;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.incoming {
+            justify-content: flex-start;
+        }
+
+        .message.outgoing {
+            justify-content: flex-end;
+        }
+
+        .message img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .message.outgoing img {
+            display: none;
+        }
+
+        .message p {
+            max-width: 60%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            word-wrap: break-word;
+        }
+
+        .message.incoming p {
+            background: white;
+            color: #050505;
+        }
+
+        .message.outgoing p {
+            background: #0084ff;
+            color: white;
+        }
+
+        .message-input {
+            padding: 15px 20px;
+            background: white;
+            border-top: 1px solid #e4e6eb;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .message-input input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #e4e6eb;
+            border-radius: 20px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .message-input button {
+            background: #0084ff;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .message-input button:hover {
+            background: #0073e6;
+        }
+
+        .message-input button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .error-message {
+            padding: 10px;
+            background: #ffebee;
+            color: #c62828;
+            border-radius: 8px;
+            margin: 10px 20px;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
 
@@ -13,10 +256,10 @@
         <div class="sidebar">
             <div class="header">
                 <div class="profile">
-                    <img src="Images/BipLogo.png" alt="Profil Resmi">
+                    <img src="Images/BipLogo.png" alt="Profil Resmi" onerror="this.src='https://via.placeholder.com/40'">
                     <span>Deniz</span>
                 </div>
-                </div>
+            </div>
 
             <div class="search-box">
                 <i class="fas fa-search"></i>
@@ -25,67 +268,101 @@
 
             <div class="chat-list">
                 <div class="chat-item active">
-                    <img src="Images/TurkcellLogo.png" alt="Grup Resmi">
+                    <img src="Images/TurkcellLogo.png" alt="Grup Resmi" onerror="this.src='https://via.placeholder.com/50'">
                     <div class="chat-info">
                         <span class="name">Afet Yardım İsteği</span>
                         <span class="last-message">Turkcell Yanında</span>
                     </div>
                     <span class="time">12:45</span>
                 </div>
-                </div>
+            </div>
         </div>
         
         <div class="chat-window">
             <div class="chat-header">
                 <div class="chat-details">
-                    <span class="chat-name">Afet Yardım İsteği</span>
+                    <span class="chat-name">Afet Yardım İsteği</span><br>
                     <span class="chat-members">Turkcell Seninle</span>
                 </div>
-                </div>
+            </div>
 
             <div class="messages">
                 <div class="message incoming">
-                    <img src="Images/TurkcellLogo.png" alt="Murat">
+                    <img src="Images/TurkcellLogo.png" alt="Turkcell" onerror="this.src='https://via.placeholder.com/35'">
                     <p>Lütfen yardım isteğinizi belirtiniz, size yardımcı olmak için elimizden geleni yapacağız.</p>
                 </div>
             </div>
 
             <div class="message-input">
-                <input type="text" id="message-text" placeholder="Message text message text" />
+                <input type="text" id="message-text" placeholder="Mesajınızı yazın..." />
                 <button id="send-button" onclick="sendMessage()">
                     <i class="fas fa-paper-plane"></i>
                 </button>
-                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        function sendMessage() {
+        async function sendMessage() {
             const messageText = document.getElementById('message-text').value;
-            if (messageText.trim() !== '') {
-                // *** Bu kısım, arka yüz entegrasyonu olmadan basit bir gösterimdir. ***
-                // Gerçek projede, burada bir API çağrısı (fetch/axios) ile 
-                // mesajı MySQL veritabanına kaydeden backend endpoint'ine istek atılırdı.
-                
-                console.log("Gönderilecek Mesaj (Konsolda): " + messageText);
-                
-                // Mesajı ekrana ekleme (göstermelik)
-                const messagesDiv = document.querySelector('.messages');
-                const newMessageDiv = document.createElement('div');
-                newMessageDiv.classList.add('message', 'outgoing');
-                newMessageDiv.innerHTML = `<p>${messageText}</p>`;
-                messagesDiv.appendChild(newMessageDiv);
-                
-                // Kaydırma (scroll) en alta
-                messagesDiv.scrollTop = messagesDiv.scrollHeight;
-                
-                // Giriş alanını temizleme
-                document.getElementById('message-text').value = '';
-                
-            } else {
-                console.log("Boş mesaj gönderilemez.");
+            const sendButton = document.getElementById('send-button');
+            
+            if (messageText.trim() === '') {
+                alert('Lütfen bir mesaj yazın');
+                return;
+            }
+
+            // Butonu devre dışı bırak
+            sendButton.disabled = true;
+
+            try {
+                // API'ye POST isteği gönder
+                const response = await fetch('save_message.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: messageText,
+                        user_id: 'U001' // Kullanıcı ID'nizi buraya ekleyin
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // Mesajı ekrana ekle
+                    const messagesDiv = document.querySelector('.messages');
+                    const newMessageDiv = document.createElement('div');
+                    newMessageDiv.classList.add('message', 'outgoing');
+                    newMessageDiv.innerHTML = `<p>${messageText}</p>`;
+                    messagesDiv.appendChild(newMessageDiv);
+                    
+                    // Scroll en alta
+                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                    
+                    // Input'u temizle
+                    document.getElementById('message-text').value = '';
+
+                    console.log('Mesaj kaydedildi:', data);
+                } else {
+                    alert('Hata: ' + data.error);
+                }
+            } catch (error) {
+                console.error('Bağlantı hatası:', error);
+                alert('Mesaj gönderilemedi. Lütfen tekrar deneyin.');
+            } finally {
+                // Butonu tekrar aktif et
+                sendButton.disabled = false;
             }
         }
+
+        // Enter tuşu ile mesaj gönderme
+        document.getElementById('message-text').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
     </script>
 </body>
 </html>
