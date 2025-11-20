@@ -1,0 +1,162 @@
+.svg-turkiye-haritasi {
+  max-width: 1140px;
+  margin: 0 auto;
+  text-align: center;
+}
+.svg-turkiye-haritasi svg {
+  width: 100%;
+  height: auto;
+}
+.il-isimleri {
+  position: absolute;
+  z-index: 2;
+}
+.il-isimleri div {
+  font-family: 'Open Sans';
+  display: inline-block;
+  background: #222;
+  color: #fff;
+  padding: 8px 16px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+#svg-turkiye-haritasi path {
+  cursor: pointer;
+}
+#svg-turkiye-haritasi path:hover {
+  fill: #666;
+}
+#bolge-1 g path{
+  fill:#666
+}
+#bolge-2 g path{
+  fill:#666
+}
+#bolge-3 g path{
+  fill:#666
+}
+#bolge-4 g path{
+  fill:#666
+}
+#bolge-5 g path{
+  fill:#666
+}
+#bolge-6 g path{
+  fill:#666
+}
+#bolge-7 g path{
+  fill:#666
+}
+
+
+/* YENİ EKLENEN SÜTUN (SIDEBAR) STİLLERİ */
+
+/* Ana Kapsayıcı: Harita ve Sütunu Yan Yana Getirir */
+.container {
+  display: flex;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0;
+  /* Eski .svg-turkiye-haritasi'nin merkezi hizalamasını devralır */
+}
+
+/* Sol Sütun Stili */
+.sidebar {
+  width: 300px; 
+  min-width: 300px;
+  background-color: #f8f8f8;
+  padding: 15px;
+  border-right: 1px solid #ddd;
+  overflow-y: auto; 
+  height: 744px; /* Harita yüksekliğiyle uyumlu (744.09448'den biraz yuvarlandı) */
+  box-sizing: border-box;
+}
+
+.sidebar h3 {
+  font-family: 'Open Sans', sans-serif;
+  margin-top: 0;
+  color: #333;
+  border-bottom: 2px solid #333;
+  padding-bottom: 5px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.sidebar table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.sidebar th, .sidebar td {
+  font-family: 'Open Sans', sans-serif;
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  font-size: 12px;
+  /* Metin taşmasını önlemek için */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sidebar th {
+  background-color: #e9e9e9;
+}
+
+/* Harita Kapsayıcısının Esnek Düzene Uyarlanması */
+.svg-turkiye-haritasi {
+  flex-grow: 1; /* Kalan tüm genişliği kaplar */
+  margin: 0; /* Artık .container merkezlediği için haritanın kendi merkezleme marginini sıfırlar */
+  text-align: center;
+}
+
+/* Statü Renklendirmesi için Harita Stilleri */
+
+/* Yardım Bekleyen iller (Örnek: Sarı/Turuncu) */
+.yardim-bekliyor {
+    fill: #e67e22 !important; /* Turuncu */
+    stroke-width: 1.5 !important;
+    stroke: #000 !important;
+}
+
+/* Kritik Durumdaki iller (Örnek: Kırmızı) */
+.kritik-durumda {
+    fill: #c0392b !important; /* Koyu Kırmızı */
+    stroke-width: 2 !important;
+    stroke: #000 !important;
+}
+
+/* Harita üzerine gelindiğinde bu renklerin korunması için */
+#svg-turkiye-haritasi path:hover {
+    fill: #2ecc71 !important; /* Vurgu için farklı bir renk */
+}
+
+
+.Su {
+    fill: #1386c9 !important; /* Mavi */
+    stroke-width: 1.5 !important;
+    stroke: #000 !important;
+}
+
+.Yiyecek {
+    fill: #28f128 !important; /* Yeşil */
+    stroke-width: 1.5 !important;
+    stroke: #000 !important;
+}
+
+.Barinma { /* 'Barınma' yerine 'Barinma' */
+    fill: #e9f863 !important; /* Sarımsı */
+    stroke-width: 2 !important;
+    stroke: #000 !important;
+}
+
+.Sağlık { /* 'Sağlık' harita ID'sinde 'saglik' olmalı */
+    fill: #c0392b !important; /* Koyu Kırmızı */
+    stroke-width: 2 !important;
+    stroke: #000 !important;
+}
+
+
