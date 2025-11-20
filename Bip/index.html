@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bip</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="chat-container">
+        <div class="sidebar">
+            <div class="header">
+                <div class="profile">
+                    <img src="Images/BipLogo.png" alt="Profil Resmi">
+                    <span>Deniz</span>
+                </div>
+                </div>
+
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Kişi veya grup arayın">
+            </div>
+
+            <div class="chat-list">
+                <div class="chat-item active">
+                    <img src="Images/TurkcellLogo.png" alt="Grup Resmi">
+                    <div class="chat-info">
+                        <span class="name">Afet Yardım İsteği</span>
+                        <span class="last-message">Turkcell Yanında</span>
+                    </div>
+                    <span class="time">12:45</span>
+                </div>
+                </div>
+        </div>
+        
+        <div class="chat-window">
+            <div class="chat-header">
+                <div class="chat-details">
+                    <span class="chat-name">Afet Yardım İsteği</span>
+                    <span class="chat-members">Turkcell Seninle</span>
+                </div>
+                </div>
+
+            <div class="messages">
+                <div class="message incoming">
+                    <img src="Images/TurkcellLogo.png" alt="Murat">
+                    <p>Lütfen yardım isteğinizi belirtiniz, size yardımcı olmak için elimizden geleni yapacağız.</p>
+                </div>
+            </div>
+
+            <div class="message-input">
+                <input type="text" id="message-text" placeholder="Message text message text" />
+                <button id="send-button" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+                </div>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const messageText = document.getElementById('message-text').value;
+            if (messageText.trim() !== '') {
+                // *** Bu kısım, arka yüz entegrasyonu olmadan basit bir gösterimdir. ***
+                // Gerçek projede, burada bir API çağrısı (fetch/axios) ile 
+                // mesajı MySQL veritabanına kaydeden backend endpoint'ine istek atılırdı.
+                
+                console.log("Gönderilecek Mesaj (Konsolda): " + messageText);
+                
+                // Mesajı ekrana ekleme (göstermelik)
+                const messagesDiv = document.querySelector('.messages');
+                const newMessageDiv = document.createElement('div');
+                newMessageDiv.classList.add('message', 'outgoing');
+                newMessageDiv.innerHTML = `<p>${messageText}</p>`;
+                messagesDiv.appendChild(newMessageDiv);
+                
+                // Kaydırma (scroll) en alta
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                
+                // Giriş alanını temizleme
+                document.getElementById('message-text').value = '';
+                
+            } else {
+                console.log("Boş mesaj gönderilemez.");
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+/* Genel Ayarlar */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('Images/SiteBackground.png');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.chat-container {
+    display: flex;
+    width: 90%; /* Genişliği ayarla */
+    max-width: 1100px; /* Maksimum genişlik */
+    height: 90vh;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* 1. SOL SÜTUN: Sohbet Listesi (Sidebar) */
+.sidebar {
+    width: 350px; /* Sütun genişliği */
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    background-color: #f7f9fb; /* Açık gri */
+}
+
+.sidebar .header {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sidebar .profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.sidebar .search-box {
+    padding: 10px 15px;
+    background-color: white;
+    margin: 0 15px 15px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #eee;
+}
+
+.sidebar .search-box i {
+    margin-right: 10px;
+    color: #999;
+}
+
+.sidebar .search-box input {
+    border: none;
+    outline: none;
+    flex-grow: 1;
+    padding: 5px 0;
+}
+
+.chat-list {
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.chat-item {
+    display: flex;
+    padding: 15px;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.chat-item:hover {
+    background-color: #f0f2f5;
+}
+
+.chat-item.active {
+    background-color: #d8e6f3; /* Seçili sohbet rengi */
+}
+
+.chat-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.chat-item .chat-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-item .name {
+    font-weight: bold;
+}
+
+.chat-item .last-message {
+    color: #666;
+    font-size: 0.9em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chat-item .time {
+    font-size: 0.8em;
+    color: #999;
+}
+
+
+/* 2. SAĞ SÜTUN: Sohbet Penceresi (Chat Window) */
+.chat-window {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+}
+
+.chat-header .chat-name {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.chat-header .chat-members {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.messages {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #f9f9f9; /* Sohbet arka planı */
+}
+
+.message {
+    display: flex;
+    margin-bottom: 15px;
+    align-items: flex-start;
+}
+
+.message img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.message p {
+    padding: 10px 15px;
+    border-radius: 18px;
+    max-width: 60%;
+    line-height: 1.4;
+    word-wrap: break-word;
+    margin: 0;
+}
+
+.message.incoming p {
+    background-color: #ffffff; /* Gelen mesaj rengi */
+    border: 1px solid #eee;
+    color: #333;
+}
+
+.message.outgoing {
+    justify-content: flex-end;
+}
+
+.message.outgoing p {
+    background-color: #4CAF50; /* Giden mesaj (BiP yeşili benzeri) */
+    color: white;
+    order: 1; /* Mesaj balonunun sağda kalmasını sağlar */
+}
+
+.message.outgoing img {
+    display: none; /* Giden mesajlarda profil resmi gizli */
+}
+
+.message-input {
+    display: flex;
+    padding: 10px 20px;
+    border-top: 1px solid #ddd;
+    align-items: center;
+    background-color: #fff;
+}
+
+.message-input input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: 1px solid #eee;
+    outline: none;
+    margin-right: 10px;
+    font-size: 1em;
+}
+
+.message-input button {
+    background-color: #4CAF50; /* Gönderme butonu rengi */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.message-input button:hover {
+    background-color: #45a049;
+}
