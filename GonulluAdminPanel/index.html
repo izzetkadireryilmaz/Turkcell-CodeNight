@@ -109,7 +109,10 @@
         .then(response => response.json()) 
         .then(result => {
             if (result.success) {
-                alert(`Kaynak başarıyla eklendi! Şehir: ${result.city_assigned}, Kategori: ${result.category_assigned}`);
+                alert(`Kaynak başarıyla eklendi!
+Şehir: ${result.city}
+Kategori: ${result.category}
+ID: ${result.resource_id}`);
                 // Başarılı olursa formu temizle
                 document.getElementById('item-name').value = ''; 
                 document.getElementById('donation-amount').value = ''; 
